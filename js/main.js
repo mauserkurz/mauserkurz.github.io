@@ -17,15 +17,15 @@ var prev = document.getElementById('prev_page');
 var next = document.getElementById('next_page');
 var comD = document.getElementById('comments_display');
 //including 300ms delay debug
-document.addEventListener('load', function() {
+/*document.addEventListener('load', function() {
 	FastClick.attach(document.body);
 	FastClick.attach(hamb);
 	FastClick.attach(cross);
 	FastClick.attach(prev);
 	FastClick.attach(next);
-}, false);
+}, false);*/
 // it open navigation
-hamb.addEventListener('click', function(event) {
+hamb.addEventListener('tap', function(event) {
 	event.preventDefault();
 	event.stopPropagation();
 	if(!(cross.classList.contains("show"))) {
@@ -42,7 +42,7 @@ hamb.addEventListener('click', function(event) {
 	}
 });
 // it hide navigation
-cross.addEventListener('click', function(event) {
+cross.addEventListener('tap', function(event) {
 	event.preventDefault();
 	event.stopPropagation();
 	if(cross.classList.contains("show")) {
@@ -206,7 +206,7 @@ var checkComment = function() {
 	}
 };
 // listeners for buttons previous comment and next comment
-prev.addEventListener('click', function(event) {
+prev.addEventListener('tap', function(event) {
 	event.preventDefault();
 	var count1 = parseInt((comments.style.marginLeft), 10);
 	if (count1 < 0) {
@@ -217,7 +217,7 @@ prev.addEventListener('click', function(event) {
 	}
 	checkComment();
 });
-next.addEventListener('click', function(event) {
+next.addEventListener('tap', function(event) {
 	event.preventDefault();
 	var count2 = parseInt((comments.style.marginLeft), 10);
 	if (count2 > -2400) {
