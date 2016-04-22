@@ -1,3 +1,4 @@
+window.addEventListener('load', function() {
 // function for using the hamburger in header navigation menu
 var hamb = document.getElementById('hamb');
 var cross = document.getElementById('cross');
@@ -278,3 +279,4 @@ function initialize () {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, 'resize', initialize);
+}, false);
