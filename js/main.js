@@ -20,10 +20,6 @@ window.addEventListener('load', function() {
 	// 300 ms delay remove
 	var attachFastClick = Origami.fastclick;
 	attachFastClick(document.body);
-	/*FastClick.attach(hamb);
-	FastClick.attach(cross);
-	FastClick.attach(prev);
-	FastClick.attach(next);*/
 	// it open navigation
 	hamb.addEventListener('click', function(event) {
 		event.preventDefault();
@@ -63,12 +59,15 @@ window.addEventListener('load', function() {
 		var initialPoint;
 		var finalPoint;
 		space.addEventListener('touchstart', function(event) {
+			event.stopPropagation();
 			initialPoint=event.changedTouches[0];
 		}, false);
 		space.addEventListener('touchend', function(event) {
+			event.stopPropagation();
 			finalPoint=event.changedTouches[0];
 			var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
-			if (xAbs > 20) {
+			var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+			if ((xAbs > 20) && (xAbs > yAbs)) {
 				if (finalPoint.pageX < initialPoint.pageX) {
 					toLeft();
 				}
