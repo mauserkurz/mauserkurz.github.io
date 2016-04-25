@@ -4,12 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>pink</title>
-	<base href="http://mauserkurz.github.io">
+	<base href="http://mauserkurz.github.loc">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/fastclick.min.js"></script>
 	<script src="js/picturefill.min.js" async></script>
+	<script src="js/smooth-scroll.min.js" async></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" async></script>
 </head>
 <body>
@@ -59,10 +60,10 @@
 					</svg>
 				</a>
 				<ul class="main-navigation__list" id="list">
-					<li><a href="#inform" class="main-navigation__link">Информация</a></li>
-					<li><a href="#ability" class="main-navigation__link">Возможности</a></li>
-					<li><a href="#review" class="main-navigation__link">Отзывы</a></li>
-					<li><a href="#prices" class="main-navigation__link">Стоимость</a></li>
+					<li><a href="#inform" class="main-navigation__link" data-options='{ "easing" : "easeOutQuint" }' data-scroll>Информация</a></li>
+					<li><a href="#ability" class="main-navigation__link" data-options='{ "easing" : "easeOutQuint" }' data-scroll>Возможности</a></li>
+					<li><a href="#review" class="main-navigation__link" data-options='{ "easing" : "easeOutQuint" }' data-scroll>Отзывы</a></li>
+					<li><a href="#prices" class="main-navigation__link" data-options='{ "easing" : "easeOutQuint" }' data-scroll>Стоимость</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -88,14 +89,14 @@
 	
 	<section class="main-content">
 		<div class="info">
-			<h1 class="info__description-title1" id="inform">Устали от серости мегаполиса?</h1><h2 class="info__description-title2"><span> <br></span>Нам есть, что вам<br>предложить!</h2>
+			<h1 class="info__description-title1" id="inform" name="inform">Устали от серости мегаполиса?</h1><h2 class="info__description-title2"><span> <br></span>Нам есть, что вам<br>предложить!</h2>
 			<div class="info__phones">
 				<img src="img/retina/iphone-screen-3-1@1x.png" class="main-content__phone1" alt="grey reality" width="292" height="302">
 				<img src="img/retina/iphone-screen-3-2@1x.png" class="main-content__phone2" alt="pink desctop" width="292" height="302">
 				<img src="img/retina/iphone-screen-3-3@1x.png" class="main-content__phone3" alt="smill on desctop" width="292" height="302">
 			</div>
 			<div class="info__description">
-				<h2 class="info__description-subtitle" id="ability">Поднимает настроение</h2>
+				<h2 class="info__description-subtitle" id="ability" name="ability">Поднимает настроение</h2>
 				<p class="info__description-info">Приложение позволит вам победить осеннюю хандру и деперессию буквально в несколько кликов!</p>
 				<h2 class="info__description-subtitle">Меняет мир вокруг</h2>
 				<p class="info__description-info">Сделайте снимок и украсьте его смайликом или текстовой подписью, чтобы усилить эффект</p>
@@ -116,7 +117,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="review" id="review">
+	<section class="review" id="review" name="review">
 		<button class="review__previous" id="prev_page"></button>
 		<div class="review__wrap" id="comments_display">
 			<div class="container-review" style="margin-left: 0px" id="comments">
@@ -156,7 +157,7 @@
 			<label for="comment3" class="review-paginator__toggle"></label>
 		</div>
 		<section class="prices">
-			<table class="prices-table" style="margin-left: -259px" id="prices">
+			<table class="prices-table" style="margin-left: -259px" id="prices" name="prices">
 				<tr class="prices-table__components">
 					<th class="cell1"></th>
 					<th class="cell2"><span>База</span><br>1,99 USD</th>

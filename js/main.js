@@ -17,53 +17,54 @@ window.addEventListener('load', function() {
 	var prev = document.getElementById('prev_page');
 	var next = document.getElementById('next_page');
 	var comD = document.getElementById('comments_display');
+	//smooth anchor navigation
+	smoothScroll.init();
 	// 300 ms delay remove
 	var attachFastClick = Origami.fastclick;
 	attachFastClick(document.body);
 	// it open navigation
+	function remClass(elem, elemClass) {
+		if(elem.classList.contains(elemClass)) {
+			elem.classList.remove(elemClass);
+		}
+	}
+	function addClass(elem, elemClass) {
+		if(!(elem.classList.contains(elemClass))) {
+			elem.classList.add(elemClass);
+		}
+	}
 	hamb.addEventListener('click', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		if(!(cross.classList.contains("show"))) {
-			cross.classList.add("show");
-		}
-		if(!(list.classList.contains("show"))) {
-			list.classList.add("show");
-		}
-		if(!(hamb.classList.contains("hide"))) {
-			hamb.classList.add("hide");
-		}
-		if(!(header.classList.contains("paint"))) {
-			header.classList.add("paint");
-		}
+		remClass(list, "hide-animation");
+		addClass(cross, "show");
+		addClass(list, "show");
+		addClass(list, "show-animation");
+		addClass(hamb, "hide");
+		addClass(header, "paint");
 	});
 	// it hide navigation
 	cross.addEventListener('click', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		if(cross.classList.contains("show")) {
-			cross.classList.remove("show");
+		addClass(list, "hide-animation");
+		function showRemover() {
+			remClass(cross, "show");
+			remClass(list, "show");
+			remClass(list, "show-animation");
+			remClass(hamb, "hide");
+			remClass(header, "paint");
 		}
-		if(list.classList.contains("show")) {
-			list.classList.remove("show");
-		}
-		if(hamb.classList.contains("hide")) {
-			hamb.classList.remove("hide");
-		}
-		if(header.classList.contains("paint")) {
-			header.classList.remove("paint");
-		}
+		setTimeout(showRemover, 150);
 	});
 	// function for swipe detecting 
 	var swipeHorizontal = function(space, toLeft, toRight, markInputs) {
 		var initialPoint;
 		var finalPoint;
 		space.addEventListener('touchstart', function(event) {
-			event.stopPropagation();
 			initialPoint=event.changedTouches[0];
 		}, false);
 		space.addEventListener('touchend', function(event) {
-			event.stopPropagation();
 			finalPoint=event.changedTouches[0];
 			var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
 			var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
@@ -80,26 +81,6 @@ window.addEventListener('load', function() {
 	};
 
 	// slider of price-table
-
-	// function witch move table in dependence of media query
-	var moveTable = function (event) {
-		if (window.matchMedia("(min-width: 700px)").matches) {
-			prices.style.marginLeft = "";
-		}
-		else {
-			if (price1.checked) {
-				prices.style.marginLeft = "20px";
-			}
-			if (price2.checked) {
-				prices.style.marginLeft = "-259px";
-			}
-			if (price3.checked) {
-				prices.style.marginLeft = "-535px";
-			}
-		}
-	};
-	window.addEventListener("load", moveTable);
-	window.addEventListener("resize", moveTable);
 
 	// main cod of slider, it moving by changing of radio buttons
 	price1.addEventListener('change', function(event) {
@@ -256,22 +237,42 @@ window.addEventListener('load', function() {
 	};
 	// swipe slider it self
 	swipeHorizontal(comD, toLeft2, toRight2, checkComment);
-
-	// Adaptive google map
-	function initialize () {     
-		var myLatlng = new google.maps.LatLng(59.936352, 30.32109700000001);
-		var myOptions = {
-			zoom: 15,
-			center: myLatlng
-		};
-		var mapPlace = new google.maps.Map(document.getElementById("map"), myOptions);
-		var pointer = "/img/target.png";
-		var beachMarker = new google.maps.Marker({
-			position: myLatlng,
-			map: mapPlace,
-			icon: pointer
-		});
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	google.maps.event.addDomListener(window, 'resize', initialize);
 }, false);
+
+// function witch move table in dependence of media query
+var moveTable = function (event) {
+	if (window.matchMedia("(min-width: 700px)").matches) {
+		prices.style.marginLeft = "";
+	}
+	else {
+		if (price1.checked) {
+			prices.style.marginLeft = "20px";
+		}
+		if (price2.checked) {
+			prices.style.marginLeft = "-259px";
+		}
+		if (price3.checked) {
+			prices.style.marginLeft = "-535px";
+		}
+	}
+};
+window.addEventListener("load", moveTable);
+window.addEventListener("resize", moveTable);
+
+// Adaptive google map
+function initialize () {     
+	var myLatlng = new google.maps.LatLng(59.936352, 30.32109700000001);
+	var myOptions = {
+		zoom: 15,
+		center: myLatlng
+	};
+	var mapPlace = new google.maps.Map(document.getElementById("map"), myOptions);
+	var pointer = "/img/target.png";
+	var beachMarker = new google.maps.Marker({
+		position: myLatlng,
+		map: mapPlace,
+		icon: pointer
+	});
+};
+window.addEventListener("load", initialize);
+window.addEventListener("resize", initialize);
