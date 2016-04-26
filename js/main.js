@@ -1,22 +1,23 @@
+// function for using the hamburger in header navigation menu
+var hamb = document.getElementById('hamb');
+var cross = document.getElementById('cross');
+var list = document.getElementById('list');
+var header = document.getElementById('header');
+var mnl = document.getElementsByClassName('main-navigation__link');
+// catching of DOM elements for work with table
+var prices = document.getElementById('prices');
+var price1 = document.getElementById('price1');
+var price2 = document.getElementById('price2');
+var price3 = document.getElementById('price3');
+// catching of slider elements
+var comments = document.getElementById('comments');
+var com1 = document.getElementById('comment1');
+var com2 = document.getElementById('comment2');
+var com3 = document.getElementById('comment3');
+var prev = document.getElementById('prev_page');
+var next = document.getElementById('next_page');
+var comD = document.getElementById('comments_display');
 window.addEventListener('load', function() {
-	// function for using the hamburger in header navigation menu
-	var hamb = document.getElementById('hamb');
-	var cross = document.getElementById('cross');
-	var list = document.getElementById('list');
-	var header = document.getElementById('header');
-	// catching of DOM elements for work with table
-	var prices = document.getElementById('prices');
-	var price1 = document.getElementById('price1');
-	var price2 = document.getElementById('price2');
-	var price3 = document.getElementById('price3');
-	// catching of slider elements
-	var comments = document.getElementById('comments');
-	var com1 = document.getElementById('comment1');
-	var com2 = document.getElementById('comment2');
-	var com3 = document.getElementById('comment3');
-	var prev = document.getElementById('prev_page');
-	var next = document.getElementById('next_page');
-	var comD = document.getElementById('comments_display');
 	//smooth anchor navigation
 	smoothScroll.init();
 	// 300 ms delay remove
@@ -44,19 +45,25 @@ window.addEventListener('load', function() {
 		addClass(header, "paint");
 	});
 	// it hide navigation
+	function showRemover() {
+		remClass(cross, "show");
+		remClass(list, "show");
+		remClass(list, "show-animation");
+		remClass(hamb, "hide");
+		remClass(header, "paint");
+	}
 	cross.addEventListener('click', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		addClass(list, "hide-animation");
-		function showRemover() {
-			remClass(cross, "show");
-			remClass(list, "show");
-			remClass(list, "show-animation");
-			remClass(hamb, "hide");
-			remClass(header, "paint");
-		}
 		setTimeout(showRemover, 150);
 	});
+	// close navigation bar after click on anchor
+	for (var m = 0;m < mnl.length; m++) {
+		mnl[m].addEventListener('click', function(event) {
+			showRemover();
+		});
+	}
 	// function for swipe detecting 
 	var swipeHorizontal = function(space, toLeft, toRight, markInputs) {
 		var initialPoint;
@@ -69,6 +76,8 @@ window.addEventListener('load', function() {
 			var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
 			var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
 			if ((xAbs > 20) && (xAbs > yAbs)) {
+				event.preventDefault();
+				event.stopPropagation();
 				if (finalPoint.pageX < initialPoint.pageX) {
 					toLeft();
 				}
@@ -273,6 +282,6 @@ function initialize () {
 		map: mapPlace,
 		icon: pointer
 	});
-};
+}
 window.addEventListener("load", initialize);
 window.addEventListener("resize", initialize);
