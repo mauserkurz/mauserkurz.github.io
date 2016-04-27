@@ -85,16 +85,6 @@ li {
     width: 1440px;
   }
 }
-@-webkit-keyframes show {
-  0% {
-    -webkit-transform: scaleY(0);
-            transform: scaleY(0);
-  }
-  100% {
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
-  }
-}
 @keyframes show {
   0% {
     -webkit-transform: scaleY(0);
@@ -103,16 +93,6 @@ li {
   100% {
     -webkit-transform: scaleY(1);
             transform: scaleY(1);
-  }
-}
-@-webkit-keyframes hide {
-  0% {
-    -webkit-transform: scaleY(1);
-            transform: scaleY(1);
-  }
-  100% {
-    -webkit-transform: scaleY(0);
-            transform: scaleY(0);
   }
 }
 @keyframes hide {
