@@ -278,7 +278,7 @@ function initialize () {
 		center: myLatlng
 	};
 	var mapPlace = new google.maps.Map(document.getElementById("map"), myOptions);
-	var pointer = "../img/target.png";
+	var pointer = "http://mauserkurz.github.io/pink/img/target.png";
 	var beachMarker = new google.maps.Marker({
 		position: myLatlng,
 		map: mapPlace,
